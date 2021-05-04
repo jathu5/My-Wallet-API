@@ -1,0 +1,24 @@
+{
+  "name": "mywalletapi",
+  "version": "1.0.0",
+  "description": "financial records keeping application",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "author": "Jathurshan Theivikaran",
+  "license": "ISC",
+  "dependencies": {
+    "@hapi/joi": "^17.1.1",
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "https": "^1.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "jwt-decode": "^3.1.2",
+    "jwt-token": "^1.0.9",
+    "mongoose": "^5.12.7",
+    "nodemon": "^2.0.7"
+  }
+}

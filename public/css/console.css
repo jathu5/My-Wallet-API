@@ -1,0 +1,89 @@
+.tiny {
+    width: 50px;
+}
+
+.full td {
+    width: 25%;
+    text-align: center;
+    border: 2px dashed black;
+
+}
+
+.full {
+    width: 100%;
+}
+
+#console {
+    margin: 50px auto;
+    background-color: black;
+    color: white;
+    width: 80%;
+    height: 80px;
+    padding: 0 65px;
+    border: 1px white solid;
+    margin-top: 400px;
+}
+
+#change-title {
+    font-size: x-large;
+}
+
+#show, #hidden {
+    position: absolute;
+    width: 99.9%;
+    left: 0;
+}
+
+#hidden input {
+    font-size: medium;
+    width: 50%;
+    text-align: center;
+    background-color: rgb(233, 233, 231);
+    color: rgb(129, 129, 129);
+}
+
+#show td, #hidden td {
+    height: 155px;
+}
+
+#hidden {
+    visibility: hidden;
+}
+
+.tiny:not(.no-hover):hover {
+    cursor: pointer;
+}
+
+.cancel {
+    position: absolute;
+    width: 2%;
+    display: none;
+}
+
+.cancel:hover {
+    cursor: pointer;
+}
+
+#slot2-cancel {
+    left: 47.5%;
+}
+
+#slot3-cancel {
+    left: 72.5%;
+}
+
+#slot4-cancel {
+    left: 97.5%;
+}
+
+#slot5-cancel {
+    left: 22.5%;
+}
+
+#slot6-cancel {
+    left: 47.5%;
+}
+
+#slot7-cancel {
+    left: 72.5%;
+}

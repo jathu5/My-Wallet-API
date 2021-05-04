@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="icon" href="images/wallet.png">
+</head>
+
+<body>
+    <header>Sign In Page</header>
+
+    <img class="top-left" id="home" src="images/home.png">
+    <button class="top-right" id="signup">Sign up</button>
+    
+    <table id="message-table">
+        <tr>
+            <td class="right"><img id="message-image" src="images/error.png" height="16%"></td>
+            <td id="message">Sample</td>
+        </tr>
+    </table>
+
+    <table class="v-margin right">
+        <tr>
+            <td class="center"><input id="radio" type="radio"><span id="radio-message"> Sign in by email instead</span></input></td>
+        </tr>
+        <tr>
+            <td><label id="signinOption">Username</label><input id="identifier" type="text"></input></td>
+        </tr>
+        <tr>
+            <td><label>Password</label><input id="password" type="password"></input></td>
+        </tr>
+        <tr>
+            <td><button id="signin">Sign In</button></td>
+        </tr>
+    </table>
+
+    <script type="module" src="js/signin.js"></script>
+</body>
+
+</html>

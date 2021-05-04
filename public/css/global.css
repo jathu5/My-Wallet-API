@@ -1,0 +1,80 @@
+* {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+body, .inner{
+    background-color:rgb(221, 221, 190);
+}
+
+div {
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+}
+
+header {
+    font-size: xx-large;
+    text-align: center;
+    padding: 0.5%;
+    padding-bottom: 1%;
+    border-bottom: black solid 2px;
+    border-collapse: 2px    ;
+}
+
+button, label, input {
+    font-size: x-large;
+    padding: 10px;
+    padding-left: 22px;
+    padding-right: 22px;
+    border: solid black 1px;
+    border-radius: 50px;
+}
+
+button, label {
+    background-color:rgb(196, 192, 158);
+    padding-left: 40px;
+    padding-right: 40px;
+    margin-top: 0.5%;
+}
+
+button:hover {
+    background-color: rgb(158, 156, 132);
+    cursor: pointer;
+}
+
+.right {
+    text-align: right;
+}
+
+.center {
+    text-align: center;
+}
+
+table:not(.change) {
+    margin: auto;
+}
+
+.top-left {
+    height: 7%;
+    position: absolute;
+    top: 0.5%;
+    left: 0.5%;
+    cursor: pointer;
+}
+
+.top-right {
+    position: absolute;
+    top: 0.5%;
+    right: 0.5%;
+}
+
+.v-margin {
+    margin-top: 4%;
+}
+
+#message-table {
+    visibility: hidden;
+}
+
+#message-image {
+    padding-right: 10px;
+}

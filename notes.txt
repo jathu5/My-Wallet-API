@@ -1,0 +1,2 @@
+change text input to password (make page loading very slow why?)
+postRequests.js logic is off (separate sign in and sign up)

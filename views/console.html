@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Console</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/console.css">
+    <link rel="icon" href="images/home.png">
+</head>
+
+<body>
+    <header>Wallet Console</header>
+    <img class="top-left" id="home" src="images/home.png">
+
+    <table id="message-table">
+        <tr>
+            <td class="right"><img id="message-image" src="images/error.png" height="16%"></td>
+            <td id="message">Sample</td>
+        </tr>
+    </table>
+
+    <!-- visual representaion of how much money in each account -->
+    <div id="show">
+        <table class="full">
+            <tr>
+                <td>
+                    <p>CASH - cash</p>
+                    <img class="tiny no-hover" src="images/cash.png">
+                    <p><span id="slot0-amount">$ 0.00</span></p>
+                </td>
+                <td id="slot2">
+                    <p id="slot2-name">CLICK TO ADD ACCOUNT</p>
+                    <img id="slot2-icon" class="tiny" src="images/add.png">
+                    <p><span id="slot2-amount">N/A</span></p>
+                </td>
+                <td id="slot3">
+                    <p id="slot3-name">CLICK TO ADD ACCOUNT</p>
+                    <img id="slot3-icon" class="tiny" src="images/add.png">
+                    <p><span id="slot3-amount">N/A</span></p>
+                </td>
+                <td id="slot4">
+                    <p id="slot4-name">CLICK TO ADD ACCOUNT</p>
+                    <img id="slot4-icon" class="tiny" src="images/add.png">
+                    <p><span id="slot4-amount">N/A</span></p>
+                </td>
+            </tr>
+        </table>
+        <table class="full">
+            <tr>
+                <td id="slot5">
+                    <p id="slot5-name">CLICK TO ADD ACCOUNT</p>
+                    <img id="slot5-icon" class="tiny" src="images/add.png">
+                    <p><span id="slot5-amount">N/A</span></p>
+                </td>
+                <td id="slot6">
+                    <p id="slot6-name">CLICK TO ADD ACCOUNT</p>
+                    <img id="slot6-icon" class="tiny" src="images/add.png">
+                    <p><span id="slot6-amount">N/A</span></p>
+                </td>
+                <td id="slot7">
+                    <p id="slot7-name">CLICK TO ADD ACCOUNT</p>
+                    <img id="slot7-icon" class="tiny" src="images/add.png">
+                    <p><span id="slot7-amount">N/A</span></p>
+                </td>
+                <td id="slot1">
+                    <p>OTHER - other</p>
+                    <img class="tiny no-hover" src="images/other.png">
+                    <p id="slot1-amount">$ 0.00</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="hidden">
+        <table class="full">
+            <tr>
+                <td>
+                    <p>CASH - cash</p>
+                    <img class="tiny no-hover" src="images/cash.png">
+                    <p>$ <span>0.00</span></p>
+                </td>
+                <td id="edit-slot2">
+                    <img class="cancel" id="slot2-cancel" src="images/cancel.png" width="7%">
+                    <input id="edit-slot2-name" type="text" value="ADD ACCOUNT NAME"></input>
+                    <input id="edit-slot2-code" type="text" value="ADD ACCOUNT CODE"></input>
+                    <input id="edit-slot2-image" type="file" value="change image">
+                </td>
+                <td id="edit-slot3">
+                    <img class="cancel" id="slot3-cancel" src="images/cancel.png" width="7%">
+                    <input id="edit-slot3-name" type="text" value="ADD ACCOUNT NAME"></input>
+                    <input id="edit-slot3-code" type="text" value="ADD ACCOUNT CODE"></input>
+                    <input id="edit-slot3-image" type="file" value="change image">
+                </td>
+                <td id="edit-slot4">
+                    <img class="cancel" id="slot4-cancel" src="images/cancel.png" width="7%">
+                    <input id="edit-slot4-name" type="text" value="ADD ACCOUNT NAME"></input>
+                    <input id="edit-slot4-code" type="text" value="ADD ACCOUNT CODE"></input>
+                    <input id="edit-slot4-image" type="file" value="change image">
+                </td>
+            </tr>
+        </table>
+        <table class="full">
+            <tr>
+                <td id="edit-slot5">
+                    <img class="cancel" id="slot5-cancel" src="images/cancel.png" width="7%">
+                    <input id="edit-slot5-name" type="text" value="ADD ACCOUNT NAME"></input>
+                    <input id="edit-slot5-code" type="text" value="ADD ACCOUNT CODE"></input>
+                    <input id="edit-slot5-image" type="file" value="change image">
+                </td>
+                <td id="edit-slot6">
+                    <img class="cancel" id="slot6-cancel" src="images/cancel.png" width="7%">
+                    <input id="edit-slot6-name" type="text" value="ADD ACCOUNT NAME"></input>
+                    <input id="edit-slot6-code" type="text" value="ADD ACCOUNT CODE"></input>
+                    <input id="edit-slot6-image" type="file" value="change image">
+                </td>
+                <td id="edit-slot7">
+                    <img class="cancel" id="slot7-cancel" src="images/cancel.png" width="7%">
+                    <input id="edit-slot7-name" type="text" value="ADD ACCOUNT NAME"></input>
+                    <input id="edit-slot7-code" type="text" value="ADD ACCOUNT CODE"></input>
+                    <input id="edit-slot7-image" type="file" value="change image">
+                </td>
+                <td id="edit-slot1">
+                    <button id="confirm">ADD ACCOUNT</button>
+                    <button id="delete">DELETE ACCOUNT</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <label class="top-right" id="balance">Balance</label>
+    <!-- consoles for user to add or transfer money to accounts -->
+    <div class="center"><input id="console" type="text"></div>
+
+    <script type="module" src="js/console.js"></script>
+</body>
+
+</html>
