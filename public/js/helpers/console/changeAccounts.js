@@ -86,11 +86,7 @@ const change = () => {
         inputs[1].value = 'CHANGE ACCOUNT CODE';
     }
 }
-
-const unchange = user => {
-    if (!user) {
-        console.log('what')
-    }
+const unchange = (user) => {
     showCell.style.visibility = 'visible';
     showOtherCell.style.visibility = 'visible';
     slot.style.visibility = 'hidden';
@@ -104,9 +100,8 @@ const unchange = user => {
     inputs[0].style.color = 'rgb(129, 129, 129)';
     inputs[1].style.color = 'rgb(129, 129, 129)';
     inputsClicked = [false, false];
-    sessionStorage.setItem('addStatus', undefined);
-    hideMessage();
     updateDisplay(user);
+    sessionStorage.setItem('addStatus', undefined);
 }
 
 const buttonEvents = (user, i) => {
@@ -136,10 +131,10 @@ const buttonEvents = (user, i) => {
                     showMessage(true, 'Something went wrong');
                 } else {
                     showMessage(false, 'Account has successfully been created');
+                    unchange(user);
                 }
-                unchange(user);
             }
-        } else {
+        } else if (addStatus() === false) {
             const nameExists = myIncludes(user, 'name', name);
             const codeExists = myIncludes(user, 'code', inputs[1].value);
 
@@ -167,7 +162,7 @@ const buttonEvents = (user, i) => {
                     showMessage(true, 'Account name already exists');
                 }
             } else {
-                if (inputsValid[0] || inputsValid[1]) {
+                if (inputsValid[0] && inputsValid[1]) {
                     makeChange = true;
                     user.accounts[i].name = name.toUpperCase();
                     user.accounts[i].code = code.toLowerCase();
@@ -177,15 +172,15 @@ const buttonEvents = (user, i) => {
             }
             if (loadImage) {
                 user.accounts[i].image = loadImage;
-            } 
+            }
 
             if (makeChange) {
                 if (updateUser(user).error) {
                     showMessage(true, 'Something went wrong');
                 } else {
                     showMessage(false, 'Account has successfully been changed');
+                    unchange(user);
                 }
-                unchange(user);
             }
         }
     }
@@ -209,8 +204,9 @@ const buttonEvents = (user, i) => {
             showMessage(true, 'Something went wrong');
         } else {
             showMessage(false, 'Account has successfully been deleted');
+            unchange(user);
         }
-        unchange(user);
+        location.reload();
     });
 
     const enterKey = 13;
