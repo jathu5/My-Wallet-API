@@ -1,4 +1,3 @@
-
 import { changeAccounts } from './helpers/console/changeAccounts.js';
 import { consoleInputs } from './helpers/console/consoleInputs.js';
 import { updateDisplay } from './helpers/console/updateDisplay.js';
@@ -13,6 +12,8 @@ const userSigned = user => {
     if (!JSON.parse(sessionStorage.getItem('signed'))) {
         clearToken();
     }
+    
+    sessionStorage.setItem('addStatus', undefined);
     consoleInputs(user);
     changeAccounts(user);
     updateDisplay(user);
@@ -25,5 +26,5 @@ fetch('user')
         }
     }).catch(err => {
         console.log(err);
-        window.location.href = '/home'
+       // window.location.href = '/home'
     });

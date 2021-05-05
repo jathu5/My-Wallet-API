@@ -8,7 +8,6 @@
 import { myIncludes, updateUser } from './general.js'
 import { showMessage, hideMessage } from '../cautionTable.js';
 import { updateDisplay } from './updateDisplay.js';
-let changing = false;
 
 const showOtherCell = document.getElementById('slot1');
 const buttonsCell = document.getElementById('edit-slot1');
@@ -26,6 +25,14 @@ let imageInput;
 let inputsClicked = [false, false];
 let loadImage;
 
+const addStatus = () => {
+    const retval = sessionStorage.getItem('addStatus');
+    if (retval === 'undefined') {
+        return undefined;
+    }
+    return JSON.parse(retval);
+}
+
 const updateSlot = i => {
     slot = document.getElementById('edit-slot' + i);
     cancel = document.getElementById('slot' + i + '-cancel');
@@ -36,7 +43,7 @@ const updateSlot = i => {
     imageInput.addEventListener('change', () => {
         const reader = new FileReader();
         const file = imageInput.files[0];
-    
+
         reader.addEventListener('load', () => {
             if (file['type'].split('/')[0] === 'image')
                 loadImage = reader.result;
@@ -45,7 +52,7 @@ const updateSlot = i => {
     });
 }
 
-const change = add => {
+const change = () => {
     for (let i = 0; i < inputs.length; ++i) {
         inputs[i].addEventListener('keydown', e => {
             if (e.keyCode !== 13 && !inputsClicked[i]) {
@@ -70,7 +77,7 @@ const change = add => {
     codeConsole.style.display = 'none';
     cancel.style.display = 'block';
 
-    if (add) {
+    if (addStatus()) {
         deleteAccount.style.display = 'none';
     } else {
         confirm.textContent = 'CHANGE ACCOUNT';
@@ -96,7 +103,7 @@ const unchange = user => {
     inputs[0].style.color = 'rgb(129, 129, 129)';
     inputs[1].style.color = 'rgb(129, 129, 129)';
     inputsClicked = [false, false];
-    changing = false;
+    sessionStorage.setItem('addStatus', undefined);
     hideMessage();
     updateDisplay(user);
 }
@@ -106,7 +113,7 @@ const buttonEvents = (user, i) => {
         const name = inputs[0].value.toUpperCase();
         const code = inputs[1].value.toLowerCase();
 
-        if (add) {
+        if (addStatus()) {
             if (name[0] === ' ' || code[0] === ' ') {
                 showMessage(true, 'Name and code must not start with a space');
             } else if (name === '' || code === '' || !inputsClicked[0] || !inputsClicked[1]) {
@@ -118,7 +125,11 @@ const buttonEvents = (user, i) => {
             } else {
                 user.accounts[i].name = name;
                 user.accounts[i].code = code;
-                user.accounts[i].image = loadImage;
+                if (loadImage) {
+                    user.accounts[i].image = loadImage;
+                } else {
+                    user.accounts[i].image = 'images/check.png';
+                }
 
                 if (updateUser(user).error) {
                     showMessage(true, 'Something went wrong');
@@ -163,7 +174,9 @@ const buttonEvents = (user, i) => {
                     showMessage(true, 'Account name and code already exist');
                 }
             }
-            user.accounts[i].image = loadImage;
+            if (loadImage) {
+                user.accounts[i].image = loadImage;
+            } 
 
             if (makeChange) {
                 if (updateUser(user).error) {
@@ -222,12 +235,12 @@ export const changeAccounts = user => {
         slotIcons[i] = document.getElementById('slot' + i + '-icon');
         slotIcons[i].addEventListener('click', () => {
 
-            if (changing) return;
-            const add = !user.accounts[i].name;
-            changing = true;
+            if (addStatus() !== undefined) return;
+
+            sessionStorage.setItem('addStatus', !user.accounts[i].name);
             updateSlot(i);
-            change(add);
-            buttonEvents(user, i, add);
+            change();
+            buttonEvents(user, i);
         });
     }
 }
