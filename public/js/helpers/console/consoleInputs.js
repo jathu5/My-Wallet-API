@@ -10,7 +10,7 @@ const addAmount = (user, inputs, amount, idx) => {
 
     if (updateUser(user).error) {
         showMessage(true, 'Something went wrong');
-        setTimeout(() => window.location.href = '/home', 3000);
+        setTimeout(() => window.location.href = '/home', 2000);
     } else {
         const accountName = user.accounts[idx].name;
         if (amount > 0) {

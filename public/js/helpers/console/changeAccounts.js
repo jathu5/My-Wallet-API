@@ -23,17 +23,31 @@ let slot;
 let cancel;
 let showCell;
 let inputs;
+let imageInput;
 let inputsClicked = [false, false];
+let loadImage;
 
 const updateSlot = i => {
     slot = document.getElementById('edit-slot' + i);
     cancel = document.getElementById('slot' + i + '-cancel');
     showCell = document.getElementById('slot' + i);
-    inputs = [document.getElementById(`edit-slot${i}-name`).toUpperCase(), document.getElementById(`edit-slot${i}-code`).toLowerCase(), document.getElementById(`edit-slot${i}-image`)];
+    inputs = [document.getElementById(`edit-slot${i}-name`), document.getElementById(`edit-slot${i}-code`)];
+    imageInput = document.getElementById(`edit-slot${i}-image`);
+
+    imageInput.addEventListener('change', () => {
+        const reader = new FileReader();
+        const file = imageInput.files[0];
+    
+        reader.addEventListener('load', () => {
+            if (file['type'].split('/')[0] === 'image')
+                loadImage = reader.result;
+        })
+        reader.readAsDataURL(file);
+    });
 }
 
 const change = add => {
-    for (let i = 0; i < inputs.length - 1; ++i) {
+    for (let i = 0; i < inputs.length; ++i) {
         inputs[i].addEventListener('keydown', e => {
             if (e.keyCode !== 13 && !inputsClicked[i]) {
                 inputs[i].value = '';
@@ -90,19 +104,22 @@ const unchange = user => {
 
 const buttonEvents = (user, i, add) => {
     const confirmInputs = () => {
+        const name = inputs[0].value.toUpperCase();
+        const code = inputs[1].value.toLowerCase();
+
         if (add) {
-            if (inputs[0].value[0] === ' ' || inputs[1].value[0] === ' ') {
+            if (name[0] === ' ' || code[0] === ' ') {
                 showMessage(true, 'Name and code must not start with a space');
-            } else if (inputs[0].value === '' || inputs[1].value === '' || !inputsClicked[0] || !inputsClicked[1]) {
+            } else if (name === '' || code === '' || !inputsClicked[0] || !inputsClicked[1]) {
                 showMessage(true, 'Name and code must both be filled in');
-            } else if (myIncludes(user, 'name', inputs[0].value) !== -1) {
+            } else if (myIncludes(user, 'name', name) !== -1) {
                 showMessage(true, 'Account name already exists');
-            } else if (myIncludes(user, 'code', inputs[1].value) !== -1) {
+            } else if (myIncludes(user, 'code', code) !== -1) {
                 showMessage(true, 'Account code already exists');
             } else {
-                user.accounts[i].name = inputs[0].value;
-                user.accounts[i].code = inputs[1].value;
-                user.accounts[i].image = 'images/check.png';
+                user.accounts[i].name = name;
+                user.accounts[i].code = code;
+                user.accounts[i].image = loadImage;
 
                 if (updateUser(user).error) {
                     showMessage(true, 'Something went wrong');
@@ -112,44 +129,42 @@ const buttonEvents = (user, i, add) => {
                 unchange(user);
             }
         } else {
-            const nameExists = myIncludes(user, 'name', inputs[0].value);
+            const nameExists = myIncludes(user, 'name', name);
             const codeExists = myIncludes(user, 'code', inputs[1].value);
 
-            let inputsValid = [false, false];
+            let inputsValid = [nameExists === i || nameExists === -1, codeExists === i || codeExists === -1];
             let makeChange = false;
-            if (nameExists === i || nameExists === -1) {
-                inputsValid[0] = true;
-            }
-            if (codeExists === i || codeExists === -1) {
-                inputsValid[1] = true;
-            }
-            if (inputs[0].value[0] === ' ' || inputs[1].value[0] === ' ') {
+
+            if (name[0] === ' ' || code[0] === ' ') {
                 showMessage(true, 'Name and code must not start with a space');
-            } else if ((inputs[0].value === '' || !inputsClicked[0]) && (inputs[1].value === '' || !inputsClicked[1])) {
-                showMessage(true, 'One of name or code must be filled in');
-            } else if (inputs[0].value === '' || !inputsClicked[0]) {
+            } else if ((name === '' || !inputsClicked[0]) && (code === '' || !inputsClicked[1])) {
+                if (user.accounts[i].image === loadImage) {
+                    showMessage(true, 'One of the inputs must be filled in');
+                }
+            } else if (name === '' || !inputsClicked[0]) {
                 if (inputsValid[1]) {
                     makeChange = true;
-                    user.accounts[i].code = inputs[1].value;
+                    user.accounts[i].code = inputs[1].value.toLowerCase();
                 } else {
                     showMessage(true, 'Account code already exists');
                 }
-            } else if (inputs[1].value === '' || !inputsClicked[1]) {
+            } else if (code.value === '' || !inputsClicked[1]) {
                 if (inputsValid[0]) {
                     makeChange = true;
-                    user.accounts[i].name = inputs[0].value;
+                    user.accounts[i].name = name.toUpperCase();
                 } else {
                     showMessage(true, 'Account name already exists');
                 }
             } else {
                 if (inputsValid[0] || inputsValid[1]) {
                     makeChange = true;
-                    user.accounts[i].name = inputs[0].value;
-                    user.accounts[i].code = inputs[1].value;
+                    user.accounts[i].name = name.toUpperCase();
+                    user.accounts[i].code = code.toLowerCase();
                 } else {
                     showMessage(true, 'Account name and code already exist');
                 }
             }
+            user.accounts[i].image = loadImage;
 
             if (makeChange) {
                 if (updateUser(user).error) {
@@ -187,7 +202,7 @@ const buttonEvents = (user, i, add) => {
 
     const enterKey = 13;
     const escKey = 27;
-    for (let i = 0; i < inputs.length - 1; ++i) {
+    for (let i = 0; i < inputs.length; ++i) {
         inputs[i].addEventListener('keyup', e => {
             if (e.keyCode === enterKey) {
                 confirmInputs();
