@@ -1,6 +1,7 @@
 // bugs (try using cookies/session/local storage)
 // not updating display (reloading) after delete
 // showmessage is called after unchange is called (expect: no message when unchanging)
+// glitch: not making both name and code grey and you can have same name/code for diff accounts
 
 // additions (must include)
 // add extra codes (abs, rep)
