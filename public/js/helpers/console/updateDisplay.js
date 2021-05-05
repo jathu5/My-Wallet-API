@@ -8,7 +8,7 @@ const showAmount = (user, i, slotAmount) => {
     slotAmount.textContent = `$ ${amount}`;
 }
 
-export const updateDisplay = user => {
+export const updateDisplay = (user) => {
     const accountsCount = 8;
     const codeConsole = document.getElementById('console');
     const balanceLabel = document.getElementById('balance');
@@ -24,14 +24,17 @@ export const updateDisplay = user => {
     balanceLabel.textContent = `Balance: $${userBalance}`;
 
     for (let i = 2; i < accountsCount; ++i) {
+        const slotName = document.getElementById('slot' + i + '-name');
+        const slotAmount = document.getElementById('slot' + i + '-amount');
+        const slotIcon = document.getElementById('slot' + i + '-icon');
         if (user.accounts[i].name) {
-            const slotName = document.getElementById('slot' + i + '-name');
-            const slotAmount = document.getElementById('slot' + i + '-amount');
-            const slotIcon = document.getElementById('slot' + i + '-icon');
-
             slotName.textContent = `${user.accounts[i].name} - ${user.accounts[i].code}`;
             slotIcon.src = user.accounts[i].image;
             showAmount(user, i, slotAmount);
+        } else {
+            slotName.textContent = 'CLICK TO ADD ACCOUNT';
+            slotIcon.src = 'images/add.png';
+            slotAmount.textContent = 'N/A';
         }
     }
 

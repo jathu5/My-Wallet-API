@@ -86,7 +86,7 @@ const change = () => {
         inputs[1].value = 'CHANGE ACCOUNT CODE';
     }
 }
-const unchange = (user) => {
+const unchange = (user, i) => {
     showCell.style.visibility = 'visible';
     showOtherCell.style.visibility = 'visible';
     slot.style.visibility = 'hidden';
@@ -100,7 +100,7 @@ const unchange = (user) => {
     inputs[0].style.color = 'rgb(129, 129, 129)';
     inputs[1].style.color = 'rgb(129, 129, 129)';
     inputsClicked = [false, false];
-    updateDisplay(user);
+    updateDisplay(user, i);
     sessionStorage.setItem('addStatus', undefined);
 }
 
@@ -150,22 +150,22 @@ const buttonEvents = (user, i) => {
             } else if (name === '' || !inputsClicked[0]) {
                 if (inputsValid[1]) {
                     makeChange = true;
-                    user.accounts[i].code = inputs[1].value.toLowerCase();
+                    user.accounts[i].code = code;
                 } else {
                     showMessage(true, 'Account code already exists');
                 }
             } else if (code.value === '' || !inputsClicked[1]) {
                 if (inputsValid[0]) {
                     makeChange = true;
-                    user.accounts[i].name = name.toUpperCase();
+                    user.accounts[i].name = name;
                 } else {
                     showMessage(true, 'Account name already exists');
                 }
             } else {
                 if (inputsValid[0] && inputsValid[1]) {
                     makeChange = true;
-                    user.accounts[i].name = name.toUpperCase();
-                    user.accounts[i].code = code.toLowerCase();
+                    user.accounts[i].name = name;
+                    user.accounts[i].code = code;
                 } else {
                     showMessage(true, 'Account name and code already exist');
                 }
@@ -196,17 +196,16 @@ const buttonEvents = (user, i) => {
     deleteAccount.addEventListener('click', () => {
         user.accounts[i].name = null;
         user.accounts[i].code = null;
+        user.accounts[i].image = null;
         user.balance -= user.accounts[i].amount;
         user.accounts[i].amount = 0;
-        user.accounts[i].image = 'images/add.png';
-
+        
         if (updateUser(user).error) {
             showMessage(true, 'Something went wrong');
         } else {
             showMessage(false, 'Account has successfully been deleted');
-            unchange(user);
+            unchange(user, i);
         }
-        location.reload();
     });
 
     const enterKey = 13;

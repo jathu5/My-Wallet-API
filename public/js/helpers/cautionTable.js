@@ -16,6 +16,7 @@ export const showMessage = (error, msg) => {
         msgImage.src = 'images/error.png';
     } else {
         msgImage.src = 'images/check.png';
+        setTimeout(hideMessage, 3000);
     }
 }
 

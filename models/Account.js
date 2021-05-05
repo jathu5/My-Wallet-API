@@ -15,7 +15,7 @@ const accountSchema = mongoose.Schema({
         default: null
     }, image: {
         type: String,
-        default: 'images/add.png'
+        default: null
     }, amount: {
         type: Number,
         default: 0
