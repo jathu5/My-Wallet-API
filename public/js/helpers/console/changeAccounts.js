@@ -1,25 +1,20 @@
-// bugs (try using cookies/session/local storage)
-// not updating display (reloading) after delete
-// showmessage is called after unchange is called (expect: no message when unchanging)
 // glitch: not making both name and code grey and you can have same name/code for diff accounts
+// glitch: calling different i slot
 
 // additions (must include)
 // add extra codes (abs, rep)
 
 import { myIncludes, updateUser } from './general.js'
-import { showMessage, hideMessage } from '../cautionTable.js';
+import { showMessage } from '../cautionTable.js';
 import { updateDisplay } from './updateDisplay.js';
-
-const showOtherCell = document.getElementById('slot1');
-const buttonsCell = document.getElementById('edit-slot1');
-const confirm = document.getElementById('confirm');
-const deleteAccount = document.getElementById('delete');
 
 const codeConsole = document.getElementById('console');
 
 // global mutable variable (used in multiple functions)
 let slot;
 let cancel;
+let deleteAccount;
+let add;
 let showCell;
 let inputs;
 let imageInput;
@@ -37,6 +32,8 @@ const addStatus = () => {
 const updateSlot = i => {
     slot = document.getElementById('edit-slot' + i);
     cancel = document.getElementById('slot' + i + '-cancel');
+    add = document.getElementById('slot' + i + '-add');
+    deleteAccount = document.getElementById('slot' + i + '-delete');
     showCell = document.getElementById('slot' + i);
     inputs = [document.getElementById(`edit-slot${i}-name`), document.getElementById(`edit-slot${i}-code`)];
     imageInput = document.getElementById(`edit-slot${i}-image`);
@@ -72,36 +69,33 @@ const change = () => {
     }
 
     showCell.style.visibility = 'hidden';
-    showOtherCell.style.visibility = 'hidden';
     slot.style.visibility = 'visible';
-    buttonsCell.style.visibility = 'visible';
     codeConsole.style.display = 'none';
     cancel.style.display = 'block';
+    add.style.display = 'block';
 
-    if (addStatus()) {
-        deleteAccount.style.display = 'none';
-    } else {
-        confirm.textContent = 'CHANGE ACCOUNT';
+    if (addStatus() === false) {
+        deleteAccount.style.display = 'block';
+        add.src = 'images/update.png';
         inputs[0].value = 'CHANGE ACCOUNT NAME';
         inputs[1].value = 'CHANGE ACCOUNT CODE';
     }
 }
-const unchange = (user, i) => {
+const unchange = (user) => {
     showCell.style.visibility = 'visible';
-    showOtherCell.style.visibility = 'visible';
     slot.style.visibility = 'hidden';
-    buttonsCell.style.visibility = 'hidden';
-    deleteAccount.style.display = 'block';
-    deleteAccount.style.margin = 'auto';
     codeConsole.style.display = 'block';
     cancel.style.display = 'none';
+    deleteAccount.style.display = 'none';
+    add.src = 'images/addAccount.png';
+    add.style.display = 'none';
     inputs[0].value = 'ADD ACCOUNT NAME';
     inputs[1].value = 'ADD ACCOUNT CODE';
     inputs[0].style.color = 'rgb(129, 129, 129)';
     inputs[1].style.color = 'rgb(129, 129, 129)';
     inputsClicked = [false, false];
-    updateDisplay(user, i);
     sessionStorage.setItem('addStatus', undefined);
+    updateDisplay(user);
 }
 
 const buttonEvents = (user, i) => {
@@ -144,7 +138,7 @@ const buttonEvents = (user, i) => {
             if (name[0] === ' ' || code[0] === ' ') {
                 showMessage(true, 'Name and code must not start with a space');
             } else if ((name === '' || !inputsClicked[0]) && (code === '' || !inputsClicked[1])) {
-                if (user.accounts[i].image === loadImage) {
+                if (user.accounts[i].image === loadImage || !loadImage) {
                     showMessage(true, 'One of the inputs must be filled in');
                 }
             } else if (name === '' || !inputsClicked[0]) {
@@ -185,7 +179,7 @@ const buttonEvents = (user, i) => {
         }
     }
 
-    confirm.addEventListener('click', () => {
+    add.addEventListener('click', () => {
         confirmInputs();
     });
 
@@ -199,12 +193,12 @@ const buttonEvents = (user, i) => {
         user.accounts[i].image = null;
         user.balance -= user.accounts[i].amount;
         user.accounts[i].amount = 0;
-        
+
         if (updateUser(user).error) {
             showMessage(true, 'Something went wrong');
         } else {
             showMessage(false, 'Account has successfully been deleted');
-            unchange(user, i);
+            unchange(user);
         }
     });
 

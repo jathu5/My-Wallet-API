@@ -1,6 +1,6 @@
 // show caution or success message (which is under the header)
 // requires path is either /user/signup or /user/signin
-const msgTabel = document.getElementById('message-table');
+const msgTable = document.getElementById('message-table');
 
 export const hideMessage = () => {
     msgTabel.style.visibility = 'hidden';
@@ -10,8 +10,9 @@ export const showMessage = (error, msg) => {
     const output = document.getElementById('message');
     const msgImage = document.getElementById('message-image');
 
+  //  console.log(msgTable.style.visibility)
     output.textContent = msg;
-    msgTabel.style.visibility = 'visible';
+    msgTable.style.visibility = 'visible';
     if (error) {
         msgImage.src = 'images/error.png';
     } else {

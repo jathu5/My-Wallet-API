@@ -1,4 +1,4 @@
-import { getMessage } from "./helpers/cautionTable.js";
+import { getToken } from "./helpers/cautionTable.js";
 
 const back = document.getElementById('back');
 const inputs = document.querySelectorAll('input');
@@ -25,7 +25,7 @@ const confirmAttempt = () => {
         password: inputs[3].value,
         confirmed: inputs[4].value
     }
-    getMessage('/user/signup', data);
+    getToken('/user/signup', data);
 }
 
 confirm.addEventListener('click', () => {

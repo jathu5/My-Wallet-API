@@ -10,9 +10,12 @@ home.addEventListener('click', () => {
 
 const userSigned = user => {
     if (!JSON.parse(sessionStorage.getItem('signed'))) {
-        clearToken();
+        fetch('user/clear/authToken', {
+            method: 'POST',
+            credentials: 'same-origin'
+        }).then(res => { });
     }
-    
+
     sessionStorage.setItem('addStatus', undefined);
     consoleInputs(user);
     changeAccounts(user);
@@ -26,5 +29,5 @@ fetch('user')
         }
     }).catch(err => {
         console.log(err);
-       // window.location.href = '/home'
+        window.location.href = '/home'
     });

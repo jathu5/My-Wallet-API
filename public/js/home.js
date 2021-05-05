@@ -23,11 +23,11 @@ const changeSettings = (textValues) => {
     }
 }
 
-const clearToken = () => {
+const clearToken = () => {/*
     fetch('user/clear/authToken', {
         method: 'POST',
         credentials: 'same-origin'
-    }).then(res => { });
+    }).then(res => { });*/
 }
 
 const hoverSettings = (textValues, user) => {
