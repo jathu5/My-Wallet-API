@@ -1,12 +1,7 @@
 import { showMessage, hideMessage } from './helpers/cautionTable.js'
 
+const wallet = document.getElementById('wallet');
 const sign = document.getElementById('sign');
-
-showMessage(true, 'Please sign in to access your wallet');
-
-wallet.addEventListener('click', () => {
-
-});
 
 const goSign = () => {
     window.location.href = 'signIn';
@@ -28,6 +23,13 @@ const changeSettings = (textValues) => {
     }
 }
 
+const clearToken = () => {
+    fetch('user/clear/authToken', {
+        method: 'POST',
+        credentials: 'same-origin'
+    }).then(res => { });
+}
+
 const hoverSettings = (textValues, user) => {
     let hoverValues = ['CLICK TO SIGN OUT', 'CLICK TO PERMANENTLY DELETE ACCOUNT', user.name, user.email, user.username, `$ ${user.balance.toFixed(2)}`];
     const { lastDate } = user;
@@ -42,13 +44,6 @@ const hoverSettings = (textValues, user) => {
     let blocks = [null, null];
     for (let i = 0; i < 8; ++i) {
         blocks[i] = document.getElementById(`block-${i}`);
-    }
-
-    const clearToken = () => {
-        fetch('user/clear/authToken', {
-            method: 'POST',
-            credentials: 'same-origin'
-        }).then(res => { });
     }
 
     blocks[0].addEventListener('click', () => {
@@ -73,7 +68,10 @@ const hoverSettings = (textValues, user) => {
 }
 
 const userSigned = user => {
-    const wallet = document.getElementById('wallet');
+    if (!JSON.parse(sessionStorage.getItem('signed'))) {
+        clearToken();
+    }
+
     hideMessage();
     sign.style.display = 'none';
 
@@ -91,4 +89,7 @@ fetch('user')
         if (!user.error) {
             userSigned(user);
         }
-    }).catch(err => { });
+    }).catch(err => {
+        wallet.addEventListener('click', () =>
+            showMessage(true, 'Please sign in to access your wallet'))
+    });

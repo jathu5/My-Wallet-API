@@ -3,7 +3,6 @@
 // showmessage is called after unchange is called (expect: no message when unchanging)
 
 // additions (must include)
-// add image import implementation
 // add extra codes (abs, rep)
 
 import { myIncludes, updateUser } from './general.js'
@@ -102,7 +101,7 @@ const unchange = user => {
     updateDisplay(user);
 }
 
-const buttonEvents = (user, i, add) => {
+const buttonEvents = (user, i) => {
     const confirmInputs = () => {
         const name = inputs[0].value.toUpperCase();
         const code = inputs[1].value.toLowerCase();

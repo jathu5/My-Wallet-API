@@ -1,4 +1,4 @@
-import { getMessage } from './helpers/cautionTable.js';
+import { getToken } from './helpers/cautionTable.js';
 
 const home = document.getElementById('home');
 const signup = document.getElementById('signup');
@@ -46,17 +46,14 @@ const signinAttempt = () => {
     }
 
     data[signOption.textContent.toLowerCase()] = inputs[0].value;
-    getMessage('/user/signin', data);
+    getToken('/user/signin', data);
 }
 
 signin.addEventListener('click', () => {
     signinAttempt();
 });
 
-const initialCheck = () => {
-    fetch('user/clear/authToken', {
-        method: 'POST',
-        credentials: 'same-origin'
-    }).then(res => { });
-}
-initialCheck();
+fetch('user/clear/authToken', {
+    method: 'POST',
+    credentials: 'same-origin'
+}).then(res => { });

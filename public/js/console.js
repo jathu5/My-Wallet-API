@@ -10,6 +10,9 @@ home.addEventListener('click', () => {
 });
 
 const userSigned = user => {
+    if (!JSON.parse(sessionStorage.getItem('signed'))) {
+        clearToken();
+    }
     consoleInputs(user);
     changeAccounts(user);
     updateDisplay(user);

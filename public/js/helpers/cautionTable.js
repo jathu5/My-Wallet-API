@@ -19,7 +19,7 @@ export const showMessage = (error, msg) => {
     }
 }
 
-export const getMessage = (path, data) => {
+export const getToken = (path, data) => {
     const shorten = str => {
         const idx = str.indexOf('"');
         if (idx === -1) {
@@ -44,6 +44,7 @@ export const getMessage = (path, data) => {
                 showMessage(false, 'Success. You will be redirected shortly');
                 let redirect = '/signin';
                 if (path === '/user/signin') {
+                    sessionStorage.setItem('signed', true);
                     redirect = 'home';
                 }
                 setTimeout(() => window.location.href = redirect, 1500);
