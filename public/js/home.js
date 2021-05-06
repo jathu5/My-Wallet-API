@@ -88,6 +88,8 @@ fetch('user')
     .then(res => res.json()).then(user => {
         if (!user.error) {
             userSigned(user);
+        } else {
+            console.log(error)
         }
     }).catch(err => {
         wallet.addEventListener('click', () =>

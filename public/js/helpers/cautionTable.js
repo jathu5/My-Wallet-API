@@ -3,21 +3,19 @@
 const msgTable = document.getElementById('message-table');
 
 export const hideMessage = () => {
-    msgTabel.style.visibility = 'hidden';
+    msgTable.style.visibility = 'hidden';
 }
 
 export const showMessage = (error, msg) => {
     const output = document.getElementById('message');
     const msgImage = document.getElementById('message-image');
 
-  //  console.log(msgTable.style.visibility)
     output.textContent = msg;
     msgTable.style.visibility = 'visible';
     if (error) {
         msgImage.src = 'images/error.png';
     } else {
         msgImage.src = 'images/check.png';
-        setTimeout(hideMessage, 3000);
     }
 }
 

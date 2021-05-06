@@ -1,5 +1,4 @@
 // glitch: not making both name and code grey and you can have same name/code for diff accounts
-// glitch: calling different i slot
 
 // additions (must include)
 // add extra codes (abs, rep)

@@ -3,6 +3,7 @@ import { consoleInputs } from './helpers/console/consoleInputs.js';
 import { updateDisplay } from './helpers/console/updateDisplay.js';
 
 const home = document.getElementById('home');
+let user;
 
 home.addEventListener('click', () => {
     window.location.href = '/home';
@@ -19,12 +20,18 @@ const userSigned = user => {
     sessionStorage.setItem('addStatus', undefined);
     consoleInputs(user);
     changeAccounts(user);
-    updateDisplay(user);
+
+    let executed = false;
+    if (!executed) {
+        updateDisplay(user);
+        executed = true;
+    }
 }
 
 fetch('user')
-    .then(res => res.json()).then(user => {
-        if (!user.error) {
+    .then(res => res.json()).then(retval => {
+        if (!retval.error) {
+            user = retval;
             userSigned(user);
         }
     }).catch(err => {

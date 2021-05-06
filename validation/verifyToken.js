@@ -2,7 +2,7 @@
 const jwt = require('jsonwebtoken');
 
 // verify if user is signed in
-const auth = (req, res, next) => {
+const verify = (req, res, next) => {
     const token = req.cookies.authToken;
     if (!token) {
         res.status(401).send('Access Denied');
@@ -18,4 +18,4 @@ const auth = (req, res, next) => {
 }
 
 // export function
-module.exports = auth;
+module.exports = verify;
