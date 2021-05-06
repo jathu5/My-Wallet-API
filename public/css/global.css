@@ -49,7 +49,7 @@ button:hover {
     text-align: center;
 }
 
-table:not(.change) {
+table:not(.change):not(.side-tables) {
     margin: auto;
 }
 
