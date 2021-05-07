@@ -19,19 +19,23 @@ const help = () => {
         dropdownContent.style.display = 'block';
     });
 
-    const messages = ['Deposit: <positive number> <account code>\nWithdrawal: <negative number> <account code>\nTransfer: <non-zero number> <deposit account code> <withdrawal account code>',
-        'Absolute Deposit: abs <number> <account code>\nRepeat Previous Log: rep\nUndo Previous Log: - rep',
-        'Add, change or delete account by clicking on its icon and fill in inputs'];
     dropdownContain.addEventListener('mouseleave', () => {
         dropdownContent.style.display = 'none';
-        blocks[0].textContent = 'Regular Transfers';
-        blocks[1].textContent = 'Helpful Codes';
-        blocks[2].textContent = 'Modify Accounts';
     });
 
-    for (let i in blocks) {
-        blocks[i].addEventListener('mouseover', () => {
+    const messages = ['[positive number] [account code]', '[non-zero number] [account code]', 'Click on add icon in accuont slot and follow',
+        '[negative number] [account code]', 'rep', 'Click on account icon and follow',
+        '[non-zero number] [deposit account code] [withdrawl account code]', '- rep', 'Click on account icon and follow'];
+    for (let i = 0; i < blocks.length; ++i) {
+        blocks[i].addEventListener('mouseenter', () => {
             blocks[i].textContent = messages[i];
+        });
+
+        const initialBlocks = ['Regular Deposit', 'Absolute Deposit', 'Add Account',
+            'Withdrawl', 'Repeat Previous', 'Change Account',
+            'Transfer', 'Cancel Previous', 'Delete Account'];
+        blocks[i].addEventListener('mouseout', () => {
+            blocks[i].textContent = initialBlocks[i];
         });
     }
 }
@@ -64,5 +68,5 @@ fetch('user')
         }
     }).catch(err => {
         console.log(err);
-        //   window.location.href = '/home'
+        window.location.href = '/home'
     });

@@ -102,10 +102,12 @@ const buttonEvents = (user, i) => {
         const name = inputs[0].value.toUpperCase();
         const code = inputs[1].value.toLowerCase();
 
-        if (addStatus()) {
-            if (name[0] === ' ' || code[0] === ' ') {
-                showMessage(true, 'Name and code must not start with a space');
-            } else if (name === '' || code === '' || !inputsClicked[0] || !inputsClicked[1]) {
+        if (name[0] === ' ' || code[0] === ' ') {
+            showMessage(true, 'Name and code must not start with a space');
+        } else if (code === 'abs') {
+            showMessage(true, 'abs is an already existing code');
+        } else if (addStatus()) {
+            if (name === '' || code === '' || !inputsClicked[0] || !inputsClicked[1]) {
                 showMessage(true, 'Name and code must both be filled in');
             } else if (myIncludes(user, 'name', name) !== -1) {
                 showMessage(true, 'Account name already exists');
@@ -133,10 +135,7 @@ const buttonEvents = (user, i) => {
 
             let inputsValid = [nameExists === i || nameExists === -1, codeExists === i || codeExists === -1];
             let makeChange = false;
-
-            if (name[0] === ' ' || code[0] === ' ') {
-                showMessage(true, 'Name and code must not start with a space');
-            } else if ((name === '' || !inputsClicked[0]) && (code === '' || !inputsClicked[1])) {
+            if ((name === '' || !inputsClicked[0]) && (code === '' || !inputsClicked[1])) {
                 if (user.accounts[i].image === loadImage || !loadImage) {
                     showMessage(true, 'One of the inputs must be filled in');
                 }

@@ -95,14 +95,15 @@ table, td, div {
 }
 
 #help {
-    padding: 40px 20px;
+    padding: 69px 10px;
     text-align: center;
     background-color: rgb(148, 148, 115);
 }
 
 .block {
     width: 500px;
-    padding: 40px 0;
+    height: auto;
+    padding: 16px 0;
     background-color: rgb(185, 185, 152);
 }
 
@@ -110,12 +111,15 @@ table, td, div {
     background-color: rgb(148, 148, 115);
 }
 
+
 #help, .block:hover {
-    cursor:pointer;
+    cursor: pointer;
 }
 
 #all-dropdown {
     padding: 0;
     position: absolute;
     left: 0;
+    bottom: 2%;
+    background-color: rgb(185, 185, 152);
 }
