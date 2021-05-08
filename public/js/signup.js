@@ -1,13 +1,15 @@
+// import local file and define global inputs
 import { getToken } from "./helpers/cautionTable.js";
-
 const back = document.getElementById('back');
 const inputs = document.querySelectorAll('input');
 const confirm = document.getElementById('make-account');
 
+// redirect user to sign in page
 back.addEventListener('click', () => {
     window.location.href = '/signin';
 });
 
+// additional functionality
 inputs.forEach(input => {
     input.addEventListener('keyup', e => {
         const enterKey = 13;
@@ -17,6 +19,7 @@ inputs.forEach(input => {
     });
 });
 
+// check if user sign up details valid and send error message or allow access accordingly
 const confirmAttempt = () => {
     const data = {
         name: inputs[0].value.toLowerCase(),
@@ -27,7 +30,6 @@ const confirmAttempt = () => {
     }
     getToken('/user/signup', data);
 }
-
 confirm.addEventListener('click', () => {
     confirmAttempt();
 });

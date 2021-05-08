@@ -1,19 +1,20 @@
+// import from local file
 import { showMessage, hideMessage } from './helpers/cautionTable.js'
 
+// define important buttons
 const wallet = document.getElementById('wallet');
 const sign = document.getElementById('sign');
 
+// redirect to signin page
 const goSign = () => {
     window.location.href = 'signIn';
 }
-
 sign.addEventListener('click', () => {
     goSign();
 });
 
-document.body.style.cursor = 'pointer';
+// show settings detail when signed in
 const changeSettings = (textValues) => {
-
     for (let i in textValues) {
         const block = document.getElementById(`block-${i}`);
         block.textContent = textValues[i];
@@ -23,6 +24,7 @@ const changeSettings = (textValues) => {
     }
 }
 
+// send request to remove token cookie
 const clearToken = () => {
     fetch('user/clear/authToken', {
         method: 'POST',
@@ -30,6 +32,7 @@ const clearToken = () => {
     }).then(res => { });
 }
 
+// show user information in settings when hovered
 const hoverSettings = (textValues, user) => {
     let hoverValues = ['CLICK TO SIGN OUT', 'CLICK TO PERMANENTLY DELETE ACCOUNT', user.name, user.email, user.username, `$ ${user.balance.toFixed(2)}`];
     const { lastDate } = user;
@@ -46,6 +49,7 @@ const hoverSettings = (textValues, user) => {
         blocks[i] = document.getElementById(`block-${i}`);
     }
 
+    // click first two settings options to sign out or delete user
     blocks[0].addEventListener('click', () => {
         clearToken();
         goSign();
@@ -67,6 +71,7 @@ const hoverSettings = (textValues, user) => {
     }
 }
 
+// execute when user is signed in
 const userSigned = user => {
     if (!JSON.parse(sessionStorage.getItem('signed'))) {
         clearToken();
@@ -84,6 +89,7 @@ const userSigned = user => {
     hoverSettings(textValues, user);
 }
 
+// check if user is signed in by sending request
 fetch('user')
     .then(res => res.json()).then(user => {
         if (!user.error) {

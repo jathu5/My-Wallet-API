@@ -37,16 +37,13 @@ const helpFunc = () => {
 
 export function instructionsFunc() {
     const information = document.getElementById('information');
-    const visibleImage = document.querySelectorAll('.visible-image');
-    information.addEventListener('mouseover', () => {
-        visibleImage.forEach(img => {
-            img.style.display = 'inline-block';
-        })
-    })
+    const instruction = document.getElementById('instruction');
+    
+    information.addEventListener('mouseenter', () => {
+        instruction.style.display = 'block';
+    });
 
     information.addEventListener('mouseout', () => {
-        visibleImage.forEach(img => {
-            img.style.display = 'none';
-        })
-    })
+        instruction.style.display = 'none';
+    });
 }

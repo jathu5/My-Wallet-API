@@ -13,6 +13,9 @@
 
 <body>
     <header>My Wallet API</header>
+    <button class="top-right" id="sign">Sign In</button>
+
+    <!-- show settings option for user depending on user's signed in status -->
     <div class="dropdown">
         <img id="settings" src="images/settings.png">
         <div class="dropdown-content">
@@ -26,16 +29,17 @@
             <div class="block" id="block-7">----------------------------------</div>
         </div>
     </div>
-    <button class="top-right" id="sign">Sign In</button>
 
+    <!-- show error or success message to user -->
     <table id="message-table">
         <tr>
             <td class="right"><img id="message-image" src="images/error.png" height="16%"></td>
             <td id="message">Sample</td>
         </tr>
     </table>
-    
-        <img id="wallet" src="images/wallet.png">
+
+    <!-- wallet image that redirect to wallet console page when clicked -->
+    <img id="wallet" src="images/wallet.png">
     <script type="module" src="js/home.js"></script>
 </body>
 

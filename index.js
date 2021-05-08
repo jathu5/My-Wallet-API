@@ -9,31 +9,30 @@ require('dotenv').config();
 // global constants
 const port = 3000;
 
+// middlewares to access client-side javascript
 app.use(express.static('public'));
 app.use('/', express.static(__dirname + 'public/css'));
+
+// parse all body requests
+app.use(express.json());
+
+// additional parser in case needed
 app.use(cookieParser());
 
+// middleware to handle all required requests
+app.use('/user', require('./routes/otherRequests.js'));
+app.use('/user', require('./routes/postRequests.js'));
+
+// connect html files to client-side javascript
 const connectPages = path => {
     app.get(path, (req, res) => {
         res.sendFile(`${__dirname}/views${path}.html`);
     });
 }
-
-app.get('/', (req, res) => {
-    res.sendFile(`${__dirname}/views/index.html`);
-});
-
 connectPages('/home');
 connectPages('/signin');
 connectPages('/signup');
 connectPages('/console');
-
-// parse all body requests
-app.use(express.json());
-
-// middleware to handle all required requests
-app.use('/user', require('./routes/otherRequests.js'));
-app.use('/user', require('./routes/postRequests.js'));
 
 // connect to database
 mongoose.connect(process.env.databaseURL, { useNewUrlParser: true, useUnifiedTopology: true }, () => {

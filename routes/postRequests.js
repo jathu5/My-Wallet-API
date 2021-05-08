@@ -75,6 +75,7 @@ router.post('/signin', async (req, res) => {
     }
 })
 
+// clear cookie from browser storage
 router.post('/clear/:cookie', async (req, res) => {
     try {
         res.clearCookie(req.params.cookie).send({ success: 'cleared' });

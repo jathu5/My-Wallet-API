@@ -14,12 +14,13 @@
 <body>
     <header>Wallet Console</header>
     <img class="top-left" id="home" src="images/home.png">
+    <label class="top-right" id="balance">Balance</label>
 
     <!-- show instructions of home page for user when they do not know what to do -->
+    <img src="images/consoleInstructions.PNG" id="instruction">
     <img id="information" src="images/information.png" width="75px;">
-    <div class="freeze visible-image"></div>
-    <img src="images/consoleInstructions.PNG" class="instruction visible-image">
     
+    <!-- show error or success message at top -->
     <table id="message-table">
         <tr>
             <td class="right"><img id="message-image" src="images/error.png" height="16%"></td>
@@ -52,8 +53,6 @@
                     <p><span id="slot4-amount">N/A</span></p>
                 </td>
             </tr>
-        </table>
-        <table class="full">
             <tr>
                 <td id="slot5">
                     <p id="slot5-name">CLICK TO ADD ACCOUNT</p>
@@ -79,6 +78,7 @@
         </table>
     </div>
 
+    <!-- secondary table for account editing functionality -->
     <div id="hidden">
         <table class="full">
             <tr>
@@ -109,8 +109,6 @@
                     <input id="edit-slot4-image" type="file" value="change image">
                 </td>
             </tr>
-        </table>
-        <table class="full">
             <tr>
                 <td id="edit-slot5">
                     <img class="cancel" id="slot5-cancel" src="images/cancel.png" width="7%">
@@ -142,10 +140,10 @@
         </table>
     </div>
 
-    <label class="top-right" id="balance">Balance</label>
     <!-- consoles for user to add or transfer money to accounts -->
     <div class="center"><input id="console" type="text"></div>
 
+    <!-- add help functionality with information on how to use page -->
     <div id="all-dropdown">
         <table id="dropdown">
             <tr>
