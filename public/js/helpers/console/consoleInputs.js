@@ -20,7 +20,7 @@ const addAmount = (user, inputs, amount, idx, abs) => {
         showMessage(false, `No changes made to your accounts`);
     } else if (updateUser(user).error) {
         showMessage(true, 'Something went wrong');
-        setTimeout(() => window.location.href = '/home', 2000);
+        setTimeout(() => window.location.href = '/', 2000);
     } else {
         const accountName = user.accounts[idx].name;
         let message = `$${(-amount).toFixed(2)} withdrawn from ${accountName} account`;
@@ -50,7 +50,7 @@ const transferAmount = (user, inputs, amount, toIdx, fromIdx) => {
         showMessage(false, `No changes made to your accounts`);
     } else if (updateUser(user).error) {
         showMessage(true, 'Something went wrong');
-        setTimeout(() => window.location.href = '/home', 3000);
+        setTimeout(() => window.location.href = '/', 3000);
     } else {
         const toAccountName = user.accounts[toIdx].name;
         const fromAccountName = user.accounts[fromIdx].name;

@@ -26,10 +26,14 @@ app.use('/user', require('./routes/postRequests.js'));
 // connect html files to client-side javascript
 const connectPages = path => {
     app.get(path, (req, res) => {
+        if (path === '') {
+            path = '/home';
+        }
         res.sendFile(`${__dirname}/views${path}.html`);
     });
 }
-connectPages('/home');
+
+connectPages('');
 connectPages('/signin');
 connectPages('/signup');
 connectPages('/console');

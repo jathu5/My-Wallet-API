@@ -10,7 +10,7 @@ let user;
 
 // redirect page to home
 home.addEventListener('click', () => {
-    window.location.href = '/home';
+    window.location.href = '/';
 });
 
 // execute when user is verified and signed in
@@ -43,5 +43,5 @@ fetch('user')
         }
     }).catch(err => {
         console.log(err);
-        window.location.href = '/home'
+        window.location.href = '/';
     });

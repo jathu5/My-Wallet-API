@@ -10,7 +10,7 @@ const inputs = [document.getElementById('identifier'), document.getElementById('
 
 // redirect page to home or signup
 home.addEventListener('click', () => {
-    window.location.href = '/home';
+    window.location.href = '/';
 });
 signup.addEventListener('click', () => {
     window.location.href = '/signup';

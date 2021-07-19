@@ -45,7 +45,7 @@ export const getToken = (path, data) => {
                 let redirect = '/signin';
                 if (path === '/user/signin') {
                     sessionStorage.setItem('signed', true);
-                    redirect = 'home';
+                    redirect = '/';
                 }
                 setTimeout(() => window.location.href = redirect, 1500);
             }
