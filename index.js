@@ -7,7 +7,7 @@ const app = express();
 require('dotenv').config();
 
 // global constants
-const port = 3000;
+const port = 5000;
 
 // middlewares to access client-side javascript
 app.use(express.static('public'));
@@ -44,6 +44,6 @@ mongoose.connect(process.env.databaseURL, { useNewUrlParser: true, useUnifiedTop
 });
 
 // boot server
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
     console.log('\nserver running [ignore]')
 });
