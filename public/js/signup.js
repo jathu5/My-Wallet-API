@@ -28,8 +28,7 @@ const confirmAttempt = () => {
         password: inputs[3].value,
         confirmed: inputs[4].value
     }
-    console.log("hey")
-    // getToken('/user/signup', data);
+    getToken('/user/signup', data);
 }
 confirm.addEventListener('click', () => {
     confirmAttempt();
