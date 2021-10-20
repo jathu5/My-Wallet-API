@@ -40,6 +40,7 @@ export const getToken = (path, data) => {
     .then((data) => {
       const { error } = data;
       if (error) {
+        console.log("yes error")
         showMessage(true, shorten(error));
       } else {
         console.log("no error")
