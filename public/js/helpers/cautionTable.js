@@ -40,11 +40,10 @@ export const getToken = (path, data) => {
     .then((data) => {
       const { error } = data;
       if (error) {
-        console.log("ye error")
-        // showMessage(true, shorten(error));
+        showMessage(true, shorten(error));
       } else {
         console.log("no error")
-        // showMessage(false, "Success. You will be redirected shortly");
+        showMessage(false, "Success. You will be redirected shortly");
         // let redirect = "/signin";
         // if (path === "/user/signin") {
         //   sessionStorage.setItem("signed", true);
