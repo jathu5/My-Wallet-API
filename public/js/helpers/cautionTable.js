@@ -39,7 +39,9 @@ export const getToken = (path, data) => {
     .then((res) => res.json())
     .then((data) => {
       const { error } = data;
-      if (!error) showMessage(false, "Success. You will be redirected shortly");
+      !error
+        ? showMessage(false, "Success. You will be redirected shortly")
+        : showMessage(true, shorten(error));
       // const { error } = data;
       // if (error) {
       //   showMessage(true, shorten(error));
