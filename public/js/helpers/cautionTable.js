@@ -38,7 +38,8 @@ export const getToken = (path, data) => {
   fetch(path, postOption)
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
+      const { error } = data;
+      if (!error) showMessage(false, "Success. You will be redirected shortly");
       // const { error } = data;
       // if (error) {
       //   showMessage(true, shorten(error));
