@@ -10,13 +10,13 @@ export const showMessage = (error, msg) => {
   const output = document.getElementById("message");
   const msgImage = document.getElementById("message-image");
 
-  output.textContent = msg;
-  msgTable.style.visibility = "visible";
   if (error) {
     msgImage.src = "images/error.png";
   } else {
     msgImage.src = "images/check.png";
   }
+  output.textContent = msg;
+  msgTable.style.visibility = "visible";
 };
 
 export const getToken = (path, data) => {
@@ -38,20 +38,20 @@ export const getToken = (path, data) => {
   fetch(path, postOption)
     .then((res) => res.json())
     .then((data) => {
-      showMessage(false, "Success. You will be redirected shortly");
-      const { error } = data;
+      console.log(data)
+      // const { error } = data;
       // if (error) {
-      //   console.log("yes error")
+      //   console.log("yes error");
       //   showMessage(true, shorten(error));
       // } else {
-      //   console.log("no error")
+      //   console.log("no error");
       //   showMessage(false, "Success. You will be redirected shortly");
-      // let redirect = "/signin";
-      // if (path === "/user/signin") {
-      //   sessionStorage.setItem("signed", true);
-      //   redirect = "/";
-      // }
-      // setTimeout(() => (window.location.href = redirect), 1500);
+      //   let redirect = "/signin";
+      //   if (path === "/user/signin") {
+      //     sessionStorage.setItem("signed", true);
+      //     redirect = "/";
+      //   }
+      //   setTimeout(() => (window.location.href = redirect), 1500);
       // }
     })
     .catch((err) => console.log(err));
