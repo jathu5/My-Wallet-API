@@ -28,10 +28,12 @@ router.post("/signup", async (req, res) => {
   } else if (body.password !== body.confirmed) {
     res.send({ error: "Passwords do not match" });
   } else {
+    console.log("HERE")
     const hashPassword = await bcrypt.hash(
       req.body.password,
       await bcrypt.genSalt(10)
     );
+    console.log(0, hashPassword)
 
     const user = new User({
       name: `${body.name[0].toUpperCase()}${body.name.substring(1)}`,
