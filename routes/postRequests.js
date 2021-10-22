@@ -41,6 +41,8 @@ router.post("/signup", async (req, res) => {
       username: body.username,
       password: hashPassword,
     });
+    res.send(user);
+    res.send(user.save)
     console.log(1, user)
     console.log(2, user.save())
     try {
