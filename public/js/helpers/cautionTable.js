@@ -39,18 +39,18 @@ export const getToken = (path, data) => {
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
-      const { error } = data;
-      if (data && error) {
-        showMessage(true, shorten(error));
-      } else {
-        showMessage(false, "Success. You will be redirected shortly");
-        let redirect = "/signin";
-        if (path === "/user/signin") {
-          sessionStorage.setItem("signed", true);
-          redirect = "/";
-        }
-        setTimeout(() => (window.location.href = redirect), 1500);
-      }
+      // const { error } = data;
+      // if (data && error) {
+      //   showMessage(true, shorten(error));
+      // } else {
+      //   showMessage(false, "Success. You will be redirected shortly");
+      //   let redirect = "/signin";
+      //   if (path === "/user/signin") {
+      //     sessionStorage.setItem("signed", true);
+      //     redirect = "/";
+      //   }
+      //   setTimeout(() => (window.location.href = redirect), 1500);
+      // }
     })
     .catch((err) => console.log(err));
 };

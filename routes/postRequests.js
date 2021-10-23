@@ -18,33 +18,34 @@ const defaultErr = 400;
 router.post("/signup", async (req, res) => {
   const body = req.body;
   const { error } = signupValidation(body);
+  if (true) res.send({ some: "none" });
+  else {
+    if (error) {
+      res.send({ error: error.details[0].message });
+    } else if (await User.findOne({ username: body.username })) {
+      res.send({ error: "Username already exists" });
+    } else if (await User.findOne({ email: body.email })) {
+      res.send({ error: "Email already exists" });
+    } else if (body.password !== body.confirmed) {
+      res.send({ error: "Passwords do not match" });
+    } else {
+      const hashPassword = await bcrypt.hash(
+        body.password,
+        await bcrypt.genSalt(10)
+      );
 
-  if (error) {
-    res.send({ error: error.details[0].message });
-  } else if (await User.findOne({ username: body.username })) {
-    res.send({ error: "Username already exists" });
-  } else if (await User.findOne({ email: body.email })) {
-    res.send({ error: "Email already exists" });
-  } else if (body.password !== body.confirmed) {
-    res.send({ error: "Passwords do not match" });
-  } else {
-    res.send({ error: "no error" });
-    const hashPassword = await bcrypt.hash(
-      body.password,
-      await bcrypt.genSalt(10)
-    );
+      const user = new User({
+        name: `${body.name[0].toUpperCase()}${body.name.substring(1)}`,
+        email: body.email.toLowerCase(),
+        username: body.username,
+        password: hashPassword,
+      });
 
-    const user = new User({
-      name: `${body.name[0].toUpperCase()}${body.name.substring(1)}`,
-      email: body.email.toLowerCase(),
-      username: body.username,
-      password: hashPassword,
-    });
-
-    try {
-      res.send(await user.save());
-    } catch (err) {
-      res.status(defaultErr).send(err);
+      try {
+        res.send(await user.save());
+      } catch (err) {
+        res.status(defaultErr).send(err);
+      }
     }
   }
 });
