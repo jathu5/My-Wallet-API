@@ -22,9 +22,9 @@ router.post("/signup", async (req, res) => {
     res.send({ error: error.details[0].message });
   } else if (body.password !== body.confirmed) {
     res.send({ error: "Passwords do not match" });
-  } else if ((await User.find({ username: body.username })).length) {
+  } else if (await User.findOne({ username: body.username })) {
     res.send({ error: "Username already exists" });
-  } else if ((await User.find({ email: body.email })).length) {
+  } else if (await User.findOne({ email: body.email })) {
     res.send({ error: "Email already exists" });
   } else {
     const hashPassword = await bcrypt.hash(
