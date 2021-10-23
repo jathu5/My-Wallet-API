@@ -16,23 +16,16 @@ const defaultErr = 400;
 
 // check if signup information is valid and post to database
 router.post("/signup", async (req, res) => {
-  // console.log(User);
-  User.findOne()
-    .then((x) => console.log(true))
-    .catch((x) => console.log(false));
-  // console.log(User.findOne({ username: body.username }));
-  res.send({ error: "none" });
-
   const body = req.body;
   const { error } = signupValidation(body);
   if (error) {
     res.send({ error: error.details[0].message });
-  } else if (await User.findOne({ username: body.username })) {
-    res.send({ error: "Username already exists" });
-  } else if (await User.findOne({ email: body.email })) {
-    res.send({ error: "Email already exists" });
   } else if (body.password !== body.confirmed) {
     res.send({ error: "Passwords do not match" });
+  } else if ((await User.find({ username: body.username })).length) {
+    res.send({ error: "Username already exists" });
+  } else if ((await User.find({ email: body.email })).length) {
+    res.send({ error: "Email already exists" });
   } else {
     const hashPassword = await bcrypt.hash(
       body.password,
