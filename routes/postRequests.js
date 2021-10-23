@@ -17,9 +17,10 @@ const defaultErr = 400;
 // check if signup information is valid and post to database
 router.post("/signup", async (req, res) => {
   // console.log(User);
-  console.log(await User.findOne({}));
+  User.findOne()
+    .then((x) => console.log(true))
+    .catch((x) => console.log(false));
   // console.log(User.findOne({ username: body.username }));
-
   res.send({ error: "none" });
 
   const body = req.body;
