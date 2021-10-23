@@ -9,7 +9,7 @@
   "author": "Jathurshan Theivikaran",
   "license": "ISC",
   "dependencies": {
-    "@hapi/joi": "^17.1.1",
+    "@hapi/joi": "^17.1.1"
     "async": "^3.2.1",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.5",
