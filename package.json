@@ -9,8 +9,7 @@
   "author": "Jathurshan Theivikaran",
   "license": "ISC",
   "dependencies": {
-    "@hapi/joi": "^17.1.1"
-    "async": "^3.2.1",
+    "@hapi/joi": "^17.1.1",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",
@@ -22,8 +21,7 @@
     "jwt-token": "^1.0.9",
     "mongoose": "^5.12.7",
     "node": "^17.0.1",
-    "nodemon": "^2.0.7",
-    "npm": "^8.1.1"
+    "nodemon": "^2.0.7"
   },
   "engines": {
     "node": ">17.0.0"
