@@ -36,14 +36,14 @@ const helpFunc = () => {
 
 
 export function instructionsFunc() {
-    const information = document.getElementById('information');
-    const instruction = document.getElementById('instruction');
+    // const information = document.getElementById('information');
+    // const instruction = document.getElementById('instruction');
     
-    information.addEventListener('mouseenter', () => {
-        instruction.style.display = 'block';
-    });
+    // information.addEventListener('mouseenter', () => {
+    //     instruction.style.display = 'block';
+    // });
 
-    information.addEventListener('mouseout', () => {
-        instruction.style.display = 'none';
-    });
+    // information.addEventListener('mouseout', () => {
+    //     instruction.style.display = 'none';
+    // });
 }
