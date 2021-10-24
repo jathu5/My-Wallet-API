@@ -124,19 +124,23 @@ table, td, div {
 }
 
 #instruction {
-    display:none;
-    margin-left: auto;
-    margin-right: auto;
-    height: 90%;
+    display: none;
+    position: absolute;
+    top: 8%;
+    left: 0;
+    background-color: rgb(221, 221, 190);
+    text-align: center;
+    height: 70%;
+    width: 100%;
 }
 
+#instruction img {
+    
+}
 
 #information {
     position: absolute;
     bottom: 1%;
     right: 1%;
-}
-
-#information:hover {
     cursor: pointer;
 }
