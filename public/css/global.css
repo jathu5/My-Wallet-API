@@ -77,4 +77,5 @@ table:not(.change):not(.side-tables) {
 
 #message-image {
     padding-right: 10px;
+    height: 4vh;
 }

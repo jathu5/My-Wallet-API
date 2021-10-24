@@ -29,7 +29,7 @@ const clearToken = () => {
   fetch("user/clear/authToken", {
     method: "POST",
     credentials: "same-origin",
-  }).then((res) => {});
+  }).then((res) => { });
 };
 
 // show user information in settings when hovered
@@ -70,7 +70,7 @@ const hoverSettings = (textValues, user) => {
   blocks[1].addEventListener("click", () => {
     clearToken();
     fetch("user/delete/" + user.username, { method: "DELETE" }).then(
-      (res) => {}
+      (res) => { }
     );
     goSign();
   });
@@ -116,12 +116,14 @@ const userSigned = (user) => {
 fetch("user")
   .then((res) => res.json())
   .then((user) => {
-    if (!user.error) {
+    if (user && !user.error) {
       userSigned(user);
+    } else {
+      wallet.addEventListener("click", () => {
+        showMessage(true, "Please sign in to access your wallet");
+      });
     }
   })
   .catch((err) => {
-    wallet.addEventListener("click", () => {
-      showMessage(true, "Please sign in to access your wallet");
-    });
+    console.log({ error: err });
   });

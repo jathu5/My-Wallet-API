@@ -6,16 +6,14 @@ const app = express();
 require("dotenv").config();
 
 // global constants
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 // middlewares to access client-side javascript
 app.use(express.static("public"));
 app.use("/", express.static(__dirname + "public/css"));
 
-// parse all body requests
+// parse all body requests and cookies
 app.use(express.json());
-
-// additional parser in case needed
 app.use(cookieParser());
 
 // middleware to handle all required requests
@@ -38,7 +36,7 @@ connectPages("/signup");
 connectPages("/console");
 
 // connect to database
-mongoose.connect(
+mongoose.connect(process.env.MONGODB_URI || 
   "mongodb+srv://user:password101@notable.uvjod.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
   { useNewUrlParser: true, useUnifiedTopology: true },
   () => {
@@ -47,6 +45,6 @@ mongoose.connect(
 );
 
 // boot server
-app.listen(process.env.PORT || port, () => {
+app.listen(port, () => {
   console.log("\nserver running [ignore]");
 });
