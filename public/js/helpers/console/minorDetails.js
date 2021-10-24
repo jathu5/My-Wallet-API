@@ -17,7 +17,7 @@ const helpFunc = () => {
         dropdownContent.style.display = 'none';
     });
 
-    const messages = ['[positive number] [account code]', 'abs [number] [account code]', 'Click on add icon in accuont slot and follow',
+    const messages = ['[positive number] [account code]', '[number] [account code] abs', 'Click on add icon in accuont slot and follow',
         '[negative number] [account code]', 'rep', 'Click on account icon and follow',
         '[non-zero number] [deposit account code] [withdrawl account code]', '- rep', 'Click on account icon and follow'];
     for (let i = 0; i < blocks.length; ++i) {
