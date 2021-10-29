@@ -3,7 +3,7 @@
 }
 
 body, .inner{
-    background-color:rgb(221, 221, 190);
+    background-color:rgb(131, 149, 167);
 }
 
 div {
@@ -34,11 +34,11 @@ button, label {
     padding-left: 40px;
     padding-right: 40px;
     margin-top: 0.5%;
+    cursor: pointer;
 }
 
 button:hover {
     background-color: rgb(158, 156, 132);
-    cursor: pointer;
 }
 
 .right {
