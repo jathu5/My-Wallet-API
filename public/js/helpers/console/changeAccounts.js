@@ -47,14 +47,6 @@ const updateSlot = i => {
 }
 
 const change = () => {
-    for (let i = 0; i < inputs.length; ++i) {
-        inputs[i].addEventListener('keydown', e => {
-            if (e.keyCode !== 13) {
-                inputs[i].value = '';
-            }
-        })
-    }
-
     showCell.style.visibility = 'hidden';
     slot.style.visibility = 'visible';
     codeConsole.style.display = 'none';
