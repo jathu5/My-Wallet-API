@@ -27,7 +27,8 @@
     font-size: x-large;
 }
 
-#show, #hidden {
+#show,
+#hidden {
     position: absolute;
     width: 99.9%;
     left: 0;
@@ -41,7 +42,8 @@
     color: rgb(129, 129, 129);
 }
 
-#show td, #hidden td {
+#show td,
+#hidden td {
     height: 155px;
 }
 
@@ -53,33 +55,47 @@
     cursor: pointer;
 }
 
-.cancel, .add, .delete {
+.cancel,
+.add,
+.delete {
     position: absolute;
     width: 2%;
     display: none;
 }
 
-.cancel:hover, .add:hover, .delete:hover {
+.cancel:hover,
+.add:hover,
+.delete:hover {
     cursor: pointer;
 }
 
-#slot2-cancel, #slot2-delete, #slot6-cancel, #slot6-delete {
+#slot2-cancel,
+#slot2-delete,
+#slot6-cancel,
+#slot6-delete {
     left: 47.5%;
 }
 
-#slot3-cancel, #slot3-delete, #slot7-cancel, #slot7-delete {
+#slot3-cancel,
+#slot3-delete,
+#slot7-cancel,
+#slot7-delete {
     left: 72.5%;
 }
 
-#slot4-cancel, #slot4-delete {
+#slot4-cancel,
+#slot4-delete {
     left: 97.5%;
 }
 
-#slot5-cancel, #slot5-delete {
+#slot5-cancel,
+#slot5-delete {
     left: 22.5%;
 }
 
-table, td, div {
+table,
+td,
+div {
     border: solid black 0;
 }
 
@@ -97,21 +113,18 @@ table, td, div {
 #help {
     padding: 69px 10px;
     text-align: center;
-    background-color: rgb(148, 148, 115);
+    background-color: rgb(154, 164, 179);
 }
 
 #dropdown-content td {
     width: 500px;
     height: auto;
     padding: 16px 0;
-    background-color: rgb(185, 185, 152);
+    background-color: rgb(154, 164, 179);
 }
 
+#help,
 .block:hover {
-    background-color: rgb(148, 148, 115);
-}
-
-#help, .block:hover {
     cursor: pointer;
 }
 
@@ -120,10 +133,10 @@ table, td, div {
     position: absolute;
     left: 0;
     bottom: 2%;
-    background-color: rgb(185, 185, 152);
+    background-color: rgb(154, 164, 179);
 }
 
-#instruction {
+/* #instruction {
     display: none;
     position: absolute;
     top: 8%;
@@ -139,4 +152,4 @@ table, td, div {
     bottom: 1%;
     right: 1%;
     cursor: pointer;
-}
+} */

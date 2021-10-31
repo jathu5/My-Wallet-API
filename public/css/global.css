@@ -1,9 +1,14 @@
+/* $color1: rgb(96, 113, 139);
+$color2: rgb(154, 164, 179);
+$color3: rgb(179, 174, 154); */
+
 * {
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
-body, .inner{
-    background-color:rgb(131, 149, 167);
+body,
+.inner {
+    background-color: rgb(109, 123, 145);
 }
 
 div {
@@ -17,10 +22,12 @@ header {
     padding: 0.5%;
     padding-bottom: 1%;
     border-bottom: black solid 2px;
-    border-collapse: 2px    ;
+    border-collapse: 2px;
 }
 
-button, label, input {
+button,
+label,
+input {
     font-size: x-large;
     padding: 10px;
     padding-left: 22px;
@@ -29,8 +36,9 @@ button, label, input {
     border-radius: 50px;
 }
 
-button, label {
-    background-color:rgb(196, 192, 158);
+button,
+label {
+    background-color: rgb(154, 164, 179);
     padding-left: 40px;
     padding-right: 40px;
     margin-top: 0.5%;
@@ -38,7 +46,7 @@ button, label {
 }
 
 button:hover {
-    background-color: rgb(158, 156, 132);
+    background-color: rgb(179, 174, 154);
 }
 
 .right {

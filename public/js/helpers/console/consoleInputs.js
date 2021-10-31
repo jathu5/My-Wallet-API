@@ -39,7 +39,7 @@ const addAmount = (user, inputs, amount, idx, abs) => {
 const transferAmount = (user, inputs, amount, toIdx, fromIdx) => {
     amount = Math.round(amount * 100) / 100;
 
-    if (user.accounts[fromIdx].amount < amount || user.accounts[toIdx].amount < (- amount)) {
+    if (!((amount > 0 && user.accounts[fromIdx].amount >= amount) || (amount < 0 && user.accounts[toIdx].amount >= (- amount)))) {
         return showMessage(true, 'Not enough funds in account');
     }
     user.accounts[toIdx].amount += amount;
