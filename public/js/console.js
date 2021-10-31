@@ -3,6 +3,7 @@ import { changeAccounts } from './helpers/console/changeAccounts.js';
 import { consoleInputs } from './helpers/console/consoleInputs.js';
 import { other } from './helpers/console/minorDetails.js';
 import { updateDisplay } from './helpers/console/updateDisplay.js';
+import { showMessage } from './helpers/cautionTable.js';
 
 // define global variables
 const home = document.getElementById('home');
@@ -40,6 +41,11 @@ fetch('user')
         if (!retval.error) {
             user = retval;
             userSigned(user);
+        } else {
+            showMessage(true, "Must be signed in to use console. You will be redirected shortly");
+            setTimeout(() => {
+                window.location.href = '/';
+            }, 3000)
         }
     }).catch(err => {
         console.log(err);
