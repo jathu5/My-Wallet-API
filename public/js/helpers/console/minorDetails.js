@@ -34,7 +34,6 @@ const helpFunc = () => {
     }
 }
 
-
 export function instructionsFunc() {
     // const information = document.getElementById('information');
     // const instruction = document.getElementById('instruction');

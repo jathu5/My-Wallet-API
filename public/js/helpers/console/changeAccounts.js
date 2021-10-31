@@ -1,8 +1,3 @@
-// glitch: not making both name and code grey and you can have same name/code for diff accounts
-
-// additions (must include)
-// add extra codes (abs, rep)
-
 import { myIncludes, updateUser } from './general.js'
 import { showMessage } from '../cautionTable.js';
 import { updateDisplay } from './updateDisplay.js';
@@ -17,7 +12,6 @@ let add;
 let showCell;
 let inputs;
 let imageInput;
-let inputsClicked = [false, false];
 let loadImage;
 
 const addStatus = () => {
@@ -47,22 +41,16 @@ const updateSlot = i => {
         })
         reader.readAsDataURL(file);
     });
+
+    inputs[0].value = '';
+    inputs[1].value = '';
 }
 
 const change = () => {
     for (let i = 0; i < inputs.length; ++i) {
         inputs[i].addEventListener('keydown', e => {
-            if (e.keyCode !== 13 && !inputsClicked[i]) {
+            if (e.keyCode !== 13) {
                 inputs[i].value = '';
-                inputs[i].style.color = 'black';
-                inputsClicked[i] = true;
-            }
-        })
-        inputs[i].addEventListener('click', () => {
-            if (!inputsClicked[i]) {
-                inputs[i].value = '';
-                inputs[i].style.color = 'black';
-                inputsClicked[i] = true;
             }
         })
     }
@@ -76,8 +64,8 @@ const change = () => {
     if (addStatus() === false) {
         deleteAccount.style.display = 'block';
         add.src = 'images/update.png';
-        inputs[0].value = 'CHANGE ACCOUNT NAME';
-        inputs[1].value = 'CHANGE ACCOUNT CODE';
+        inputs[0].placeholder = 'CHANGE ACCOUNT NAME';
+        inputs[1].placeholder = 'CHANGE ACCOUNT CODE';
     }
 }
 const unchange = (user) => {
@@ -88,12 +76,9 @@ const unchange = (user) => {
     deleteAccount.style.display = 'none';
     add.src = 'images/addAccount.png';
     add.style.display = 'none';
-    inputs[0].value = 'ADD ACCOUNT NAME';
-    inputs[1].value = 'ADD ACCOUNT CODE';
-    inputs[0].style.color = 'rgb(129, 129, 129)';
-    inputs[1].style.color = 'rgb(129, 129, 129)';
-    inputsClicked = [false, false];
     sessionStorage.setItem('addStatus', undefined);
+    inputs[0].placeholder = "ADD ACCOUNT NAME";
+    inputs[1].placeholder = "ADD ACCOUNT NAME";
     updateDisplay(user);
 }
 
@@ -102,12 +87,12 @@ const buttonEvents = (user, i) => {
         const name = inputs[0].value.toUpperCase();
         const code = inputs[1].value.toLowerCase();
 
-        if (name[0] === ' ' || code[0] === ' ') {
+        if (name.includes(' ') || code.includes(' ')) {
             showMessage(true, 'Name and code must not start with a space');
         } else if (code === 'abs') {
             showMessage(true, 'abs is an already existing code');
         } else if (addStatus()) {
-            if (name === '' || code === '' || !inputsClicked[0] || !inputsClicked[1]) {
+            if (name === '' || code === '') {
                 showMessage(true, 'Name and code must both be filled in');
             } else if (myIncludes(user, 'name', name) !== -1) {
                 showMessage(true, 'Account name already exists');
@@ -135,18 +120,18 @@ const buttonEvents = (user, i) => {
 
             let inputsValid = [nameExists === i || nameExists === -1, codeExists === i || codeExists === -1];
             let makeChange = false;
-            if ((name === '' || !inputsClicked[0]) && (code === '' || !inputsClicked[1])) {
-                if (user.accounts[i].image === loadImage || !loadImage) {
-                    showMessage(true, 'One of the inputs must be filled in');
-                }
-            } else if (name === '' || !inputsClicked[0]) {
+            if ((name === '' && code === '' && (user.accounts[i].image === loadImage || !loadImage))) {
+                showMessage(true, 'One of the inputs must be filled in');
+            } else if (name === '' && code === '') {
+                makeChange = true;
+            } else if (name === '') {
                 if (inputsValid[1]) {
                     makeChange = true;
                     user.accounts[i].code = code;
                 } else {
                     showMessage(true, 'Account code already exists');
                 }
-            } else if (code.value === '' || !inputsClicked[1]) {
+            } else if (code === '') {
                 if (inputsValid[0]) {
                     makeChange = true;
                     user.accounts[i].name = name;
@@ -162,6 +147,7 @@ const buttonEvents = (user, i) => {
                     showMessage(true, 'Account name and code already exist');
                 }
             }
+
             if (loadImage) {
                 user.accounts[i].image = loadImage;
             }
