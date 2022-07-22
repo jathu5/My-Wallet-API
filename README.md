@@ -3,8 +3,10 @@
 [gmail-url]: mailto:theivikaran.jathurshan@gmail.com
 [outlook-shield]: https://img.shields.io/badge/Microsoft_Outlook-0078D4?style=for-the-badge&logo=microsoft-outlook&logoColor=white
 [outlook-url]: mailto:jtheiv@outlook.com
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-shield]: https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white
 [linkedin-url]: https://linkedin.com/in/jathurshan-t
+[github-shield]: https://img.shields.io/badge/GitHub-8631A9?style=for-the-badge&logo=github&logoColor=white
+[github-url]: https://github.com/jath-git?tab=repositories
 
 <!-- project summary shields -->
 [contributors-shield]: https://img.shields.io/github/contributors/jath-git/My-Wallet-API.svg?style=for-the-badge
@@ -27,6 +29,7 @@
 [![Gmail][gmail-shield]][gmail-url]
 [![Outlook][outlook-shield]][outlook-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
+[![GitHub][github-shield]][github-url]
 
 <!-- project overview -->
 <br />
@@ -48,7 +51,7 @@
   </div>
   <!-- project description -->
     <p>
-    A platform to organize financial balances. Performed crud operations and user authentication like password verification, tokens, session storage. Practiced full stack development.
+    A platform to organize financial balances. Performed crud operations and user auth.
     <br />
     </p>
 </div>
