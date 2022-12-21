@@ -4,7 +4,7 @@
   "description": "financial records keeping application",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js"
+    "dev": "node index.js"
   },
   "author": "Jathurshan Theivikaran",
   "license": "ISC",
@@ -20,7 +20,6 @@
     "jsonwebtoken": "^8.5.1",
     "jwt-decode": "^3.1.2",
     "jwt-token": "^1.0.9",
-    "mongoose": "^5.13.15",
-    "nodemon": "^2.0.20"
+    "mongoose": "^5.13.15"
   }
 }
