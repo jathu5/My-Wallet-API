@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const app = express();
 require("dotenv").config();
+mongoose.set('strictQuery', false);
 
 // global constants
 // const port = process.env.PORT || 8000;
