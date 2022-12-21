@@ -8,9 +8,6 @@
   },
   "author": "Jathurshan Theivikaran",
   "license": "ISC",
-  "engines": {
-    "node": ">17.0.0"
-  },
   "dependencies": {
     "@hapi/joi": "^17.1.1",
     "bcryptjs": "^2.4.3",
