@@ -6,7 +6,8 @@ const app = express();
 require("dotenv").config();
 
 // global constants
-const port = process.env.PORT || 5000;
+// const port = process.env.PORT || 8000;
+const port = 8000;
 
 // middlewares to access client-side javascript
 app.use(express.static("public"));
