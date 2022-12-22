@@ -1,8 +1,8 @@
 {
   "name": "mywalletapi",
-  "main": "index.js",
   "version": "1.0.0",
   "description": "financial records keeping application",
+  "main": "index.js",
   "scripts": {
     "build": "node index.js",
     "start": "node index.js"
