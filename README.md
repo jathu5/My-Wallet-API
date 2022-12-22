@@ -62,10 +62,10 @@
 ## Instructions
 * Run program
 ```sh
-npm install
+npm run build
 ```
 ```sh
-npm start
+npm run start
 ```
 * Access console page
 ```console
