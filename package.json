@@ -4,6 +4,7 @@
   "description": "financial records keeping application",
   "main": "index.js",
   "scripts": {
+    "build": "npm install",
     "start": "node index.js"
   },
   "author": "Jathurshan Theivikaran",
