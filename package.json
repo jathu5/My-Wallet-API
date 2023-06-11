@@ -2,9 +2,10 @@
   "name": "mywalletapi",
   "version": "1.0.0",
   "description": "financial records keeping application",
-  "main": "index.js",
+  "main": "api.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "nodemon src/api.js",
+    "build": "rm -rf dist && mkdir dist"
   },
   "author": "Jathurshan Theivikaran",
   "license": "ISC",
@@ -19,6 +20,9 @@
     "jwt-decode": "3.1.2",
     "jwt-token": "1.0.9",
     "mongodb": "4.13.0",
-    "mongoose": "6.8.0"
+    "mongoose": "6.8.0",
+    "netlify-lambda": "^2.0.16",
+    "nodemon": "^2.0.22",
+    "serverless-http": "^3.2.0"
   }
 }
